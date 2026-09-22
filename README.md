@@ -33,7 +33,7 @@ traffic exits to the internet from a French alwaysdata IP.
 
 - 💸 **Free:** runs on the alwaysdata free plan, no VPS to rent or maintain
 - 🔒 **Real HTTPS:** alwaysdata serves the certificate for `<account>.alwaysdata.net`, Xray sits behind its proxy
-- ⚡ **One command:** installs from macOS, Linux or Windows over a single SSH connection, so the password is asked once
+- ⚡ **One command:** from macOS, Linux or Windows over one SSH connection (the password is asked once), or right on the server
 - ✅ **Verified download:** the Xray archive is checked against the SHA-256 from its release
 - 🔁 **Safe re-runs:** re-running the install updates Xray and the scripts, the UUID, path and link stay the same
 - 🤫 **No access log:** Xray logs warnings only, connections are not recorded
@@ -52,11 +52,11 @@ and the `IP` / `PORT` that alwaysdata assigns, then starts Xray.
 
 ## 🚀 Quick start
 
-**You need:** an alwaysdata account and `ssh` + `tar` on your computer (built into macOS, Linux and Windows 10/11).
+**You need:** an alwaysdata account and `ssh` on your computer (built into macOS, Linux and Windows 10/11).
 
 **1. Enable SSH** in the alwaysdata panel: *Remote access → SSH*.
 
-**2. Run the installer** from this folder:
+**2. Run the installer** from this folder (it also needs `tar`, built in as well):
 
 ```bash
 # macOS / Linux
@@ -68,7 +68,15 @@ and the `IP` / `PORT` that alwaysdata assigns, then starts Xray.
 install.cmd <account>@ssh-<account>.alwaysdata.net
 ```
 
-It uploads `start.sh` and `setup.sh`, installs the newest Xray, checks the config and prints your link:
+Or install right on the server, no need to download this repository. Log in with
+`ssh <account>@ssh-<account>.alwaysdata.net` and run:
+
+```bash
+cd ~ && curl -fsSLO "https://raw.githubusercontent.com/AppsGanin/alwaysdata-xray/main/{start,setup}.sh" && bash setup.sh
+```
+
+Either way, `start.sh` and `setup.sh` end up in your home folder, the newest Xray is installed, the config is checked
+and your link is printed:
 
 ```text
 Configuration OK.
@@ -105,7 +113,8 @@ XHTTP needs an Xray-based client.
 ## 🔄 Update
 
 Re-run the install, then restart the site in the panel. That updates Xray to the newest release and the scripts
-to your local copies. Secrets are kept, the link stays the same.
+to your local copies (or, with the server command, to the latest version on GitHub). Secrets are kept, the link
+stays the same.
 
 **Need new secrets** (e.g. the link leaked)? Delete `~/secrets.env` on the server, re-run the install and restart
 the site. You get a new UUID, path and link.
