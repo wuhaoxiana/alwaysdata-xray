@@ -22,10 +22,20 @@ if [[ $(./xray version 2>/dev/null) != *" ${XRAY_VERSION#v} "* ]]; then
     rm $zip $zip.dgst
 fi
 
+# Installs before October 2026 lived in the home folder, where this folder's name was the Xray binary (the
+# installer renamed it to xray.old): take over their secrets, so the link stays the same, and clean up
+moved=
+if [ -f ../xray.old ]; then
+    [ -f secrets.env ] || mv ../secrets.env . 2>/dev/null || true
+    rm -f ../xray.old ../start.sh ../setup.sh ../config.json ../secrets.env ../link.txt
+    moved=1
+fi
+
 [ -f secrets.env ] || printf 'UUID=%s\nXHTTP_PATH=/%s\n' "$(./xray uuid)" "$(./xray uuid | tr -d -)" > secrets.env
 . ./secrets.env
 
 chmod 700 start.sh
 ./start.sh --check | tail -1
-echo "Site: User program, command $PWD/start.sh (restart the site after updates)"
+echo "Site: User program, command $PWD/start.sh, working directory $PWD (restart the site after updates)"
+[ -z "$moved" ] || echo "Moved from the home folder: change the site's command and working directory to the above now"
 echo "vless://$UUID@$SITE:443?encryption=none&security=tls&sni=$SITE&type=xhttp&host=$SITE&path=${XHTTP_PATH//\//%2F}&mode=$XHTTP_MODE#$ACCOUNT" | tee link.txt

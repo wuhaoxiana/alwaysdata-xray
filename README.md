@@ -72,25 +72,25 @@ Or install right on the server, no need to download this repository. Log in with
 `ssh <account>@ssh-<account>.alwaysdata.net` and run:
 
 ```bash
-cd ~ && curl -fsSLO "https://raw.githubusercontent.com/AppsGanin/alwaysdata-xray/main/{start,setup}.sh" && bash setup.sh
+cd ~ && { [ ! -f xray ] || mv xray xray.old; } && mkdir -p xray && cd xray && curl -fsSLO "https://raw.githubusercontent.com/AppsGanin/alwaysdata-xray/main/{start,setup}.sh" && bash setup.sh
 ```
 
-Either way, `start.sh` and `setup.sh` end up in your home folder, the newest Xray is installed, the config is checked
+Either way, `start.sh` and `setup.sh` end up in `~/xray`, the newest Xray is installed, the config is checked
 and your link is printed:
 
 ```text
 Configuration OK.
-Site: User program, command /home/<account>/start.sh (restart the site after updates)
+Site: User program, command /home/<account>/xray/start.sh, working directory /home/<account>/xray (restart the site after updates)
 vless://<uuid>@<account>.alwaysdata.net:443?encryption=none&security=tls&…&mode=packet-up#<account>
 ```
 
 **3. Point the site at Xray.** In the panel: *Web → Sites* → edit `<account>.alwaysdata.net`:
 
-| Field             | Value                      |
-| ----------------- | -------------------------- |
-| Type              | **User program**           |
-| Command           | `/home/<account>/start.sh` |
-| Working directory | `/home/<account>`          |
+| Field             | Value                           |
+| ----------------- | ------------------------------- |
+| Type              | **User program**                |
+| Command           | `/home/<account>/xray/start.sh` |
+| Working directory | `/home/<account>/xray`          |
 
 **4. Import the `vless://…` link** into your client. Done 🎉
 
@@ -98,7 +98,7 @@ vless://<uuid>@<account>.alwaysdata.net:443?encryption=none&security=tls&…&mod
 > Lost the link? It is saved on the server:
 >
 > ```bash
-> ssh <account>@ssh-<account>.alwaysdata.net cat link.txt
+> ssh <account>@ssh-<account>.alwaysdata.net cat xray/link.txt
 > ```
 
 ## 📱 Clients
@@ -116,7 +116,11 @@ Re-run the install, then restart the site in the panel. That updates Xray to the
 to your local copies (or, with the server command, to the latest version on GitHub). Secrets are kept, the link
 stays the same.
 
-**Need new secrets** (e.g. the link leaked)? Delete `~/secrets.env` on the server, re-run the install and restart
+> [!NOTE]
+> Installs before October 2026 lived right in the home folder. The update moves them into `~/xray` (the link stays
+> the same) and asks you to change the site's command and working directory to the ones in step 3.
+
+**Need new secrets** (e.g. the link leaked)? Delete `~/xray/secrets.env` on the server, re-run the install and restart
 the site. You get a new UUID, path and link.
 
 ## 🗑️ Uninstall
@@ -124,7 +128,7 @@ the site. You get a new UUID, path and link.
 Change the site type back in the panel (or delete the site), then:
 
 ```bash
-ssh <account>@ssh-<account>.alwaysdata.net "rm -f xray setup.sh start.sh config.json secrets.env link.txt"
+ssh <account>@ssh-<account>.alwaysdata.net "rm -rf ~/xray"
 ```
 
 ## ❓ FAQ
