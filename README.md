@@ -26,8 +26,6 @@ A personal [Xray](https://github.com/XTLS/Xray-core) proxy (VLESS over XHTTP) on
 [alwaysdata](https://www.alwaysdata.com) plan. Clients connect to `https://<account>.alwaysdata.net`,
 traffic exits to the internet from a French alwaysdata IP.
 
-> [!WARNING]
-> The alwaysdata free plan forbids proxies, so the account may get suspended at any time. Keep a [fallback](#️-where-to-get-a-fallback-server).
 
 ## ✨ Features
 
