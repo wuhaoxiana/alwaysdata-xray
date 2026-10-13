@@ -161,55 +161,6 @@ into the panel for 120 days.
 > [!IMPORTANT]
 > Log into the alwaysdata panel at least once every 120 days, otherwise the free account is suspended.
 
-## 🖥️ Where to get a fallback server
-
-alwaysdata can suspend the free account at any time. For something reliable, rent the cheapest VPS
-(1 vCPU, 1 GB RAM, any Linux) and run [RosPanel](https://github.com/AppsGanin/rospanel) on it:
-a self-hosted Xray panel from the same author, installed with one command.
-
-**If you haven't picked a host yet, sign up through the links below.** It's a free way to
-support the project: the price is the same for you, and a share of the rent goes into development.
-
-[VDSina](https://www.vdsina.com/?partner=nmzki7z7tu) ·
-[Aeza](https://aeza.net/?ref=375522) ·
-[NetGrid](https://netgrid.host/ru?from=3491) ·
-[Serv.host](https://serv.host/?from=36809) ·
-[u1Host](https://u1host.com/?from=7702) ·
-[Waicore](https://waicore.net/?from=35607)
-
-Thanks to everyone who signs up through them 🙏
-
-## 💝 Support the project
-
-The project is developed in spare time and distributed for free. If it turned out to be useful,
-the easiest way to support it is
-**[DonationAlerts](https://www.donationalerts.com/r/dmitryapp)** or
-**[Boosty](https://boosty.to/githubapps)** (RU cards, one-off or recurring). Thank you! 🙏
-
-<b>Crypto</b>
-
-
-**USDT.** Pick a network and copy the address **carefully** — the sender's and the receiver's
-network must match. Send **USDT** only, and only on the network listed: a transfer on the wrong
-network cannot be recovered. The cheapest fees are on **TRON (TRC20)** and **TON**.
-
-| Network          | Token | Address                                            |
-| ---------------- | ----- | -------------------------------------------------- |
-| TRC20 (Tron)     | USDT  | `TJwyrPVEZVZ1YrcmDiZTyFjLo3Q2DmEGzs`               |
-| ERC20 (Ethereum) | USDT  | `0xf9d663146ce902da91911b214c71cc73a5269d1d`       |
-| Solana           | USDT  | `2qAZRTbaUMTfYuZbD1dCYHjkYgxkw4dUYE9XY3JhC2Cs`     |
-| TON              | USDT  | `UQDoat731MLYuIw8ayL3Vhhw7zTBbLvRaQFmDvab--CNNI7e` |
-
-**Bybit.** If you're on Bybit too — transfer to UID `136462734`: instant and free.
-
-**Can't support financially?** Give the project a ⭐ star, or rent a server through the links in
-[Where to get a fallback server](#️-where-to-get-a-fallback-server). Both cost you nothing and help a lot.
-Found a bug or have an idea? Open an [issue](https://github.com/AppsGanin/alwaysdata-xray/issues) or a PR.
-
-<p align="center">
-  <a href="https://github.com/AppsGanin/alwaysdata-xray/stargazers"><img src="https://img.shields.io/github/stars/AppsGanin/alwaysdata-xray?style=social" alt="Star on GitHub"></a>
-</p>
-
 ## 📄 License
 
 [MIT](LICENSE) © 2026 Dmitry Ganin
